@@ -10,6 +10,43 @@ EXPANDED_VER_RE = re.compile(
 )
 
 def parse_args() -> argparse.Namespace:
+    """
+    This function parses command line arguments using the `argparse` module.
+
+    Args:
+        None
+
+    Returns:
+        argparse.Namespace: The parsed command line arguments.
+
+    Raises:
+        None
+
+    Example:
+        ```
+        import argparse
+        from pathlib import Path
+
+        def parse_args() -> argparse.Namespace:
+            parser = argparse.ArgumentParser()
+            parser.add_argument(
+                "file",
+                type=Path,
+            )
+            parser.add_argument(
+                "--section",
+                "-s",
+                type=str,
+                default="tool.poetry.dependencies",
+            )
+            return parser.parse_args()
+
+        args = parse_args()
+        print(args.file)
+        print(args.section)
+        ```
+    """
+
     
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -25,6 +62,43 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 def get_dependencies(path: Path, section: str) -> List[str]:
+    """
+    This function parses command line arguments using the `argparse` module.
+
+    Args:
+        None
+
+    Returns:
+        argparse.Namespace: The parsed command line arguments.
+
+    Raises:
+        None
+
+    Example:
+        ```
+        import argparse
+        from pathlib import Path
+
+        def parse_args() -> argparse.Namespace:
+            parser = argparse.ArgumentParser()
+            parser.add_argument(
+                "file",
+                type=Path,
+            )
+            parser.add_argument(
+                "--section",
+                "-s",
+                type=str,
+                default="tool.poetry.dependencies",
+            )
+            return parser.parse_args()
+
+        args = parse_args()
+        print(args.file)
+        print(args.section)
+        ```
+    """
+
     read_file = path.read_text()
     recording = False
     deps = []
@@ -44,6 +118,43 @@ def get_dependencies(path: Path, section: str) -> List[str]:
     return deps
 
 def get_new_version(package_name: str) -> Optional[str]:
+    """
+    This function parses command line arguments using the `argparse` module.
+
+    Args:
+        None
+
+    Returns:
+        argparse.Namespace: The parsed command line arguments.
+
+    Raises:
+        None
+
+    Example:
+        ```
+        import argparse
+        from pathlib import Path
+
+        def parse_args() -> argparse.Namespace:
+            parser = argparse.ArgumentParser()
+            parser.add_argument(
+                "file",
+                type=Path,
+            )
+            parser.add_argument(
+                "--section",
+                "-s",
+                type=str,
+                default="tool.poetry.dependencies",
+            )
+            return parser.parse_args()
+
+        args = parse_args()
+        print(args.file)
+        print(args.section)
+        ```
+    """
+
     resp = requests.get(f'https://pypi.org/pypi/{package_name}/json')
     if not resp.ok:
         return None
@@ -52,6 +163,43 @@ def get_new_version(package_name: str) -> Optional[str]:
 
 
 def bump_version(dependency: str) -> str:
+    """
+    This function parses command line arguments using the `argparse` module.
+
+    Args:
+        None
+
+    Returns:
+        argparse.Namespace: The parsed command line arguments.
+
+    Raises:
+        None
+
+    Example:
+        ```
+        import argparse
+        from pathlib import Path
+
+        def parse_args() -> argparse.Namespace:
+            parser = argparse.ArgumentParser()
+            parser.add_argument(
+                "file",
+                type=Path,
+            )
+            parser.add_argument(
+                "--section",
+                "-s",
+                type=str,
+                default="tool.poetry.dependencies",
+            )
+            return parser.parse_args()
+
+        args = parse_args()
+        print(args.file)
+        print(args.section)
+        ```
+    """
+
     exp_match = EXPANDED_VER_RE.match(dependency)
     raw_match = None
     if exp_match:
@@ -74,6 +222,43 @@ def bump_version(dependency: str) -> str:
     return None
 
 def main():
+    """
+    This function parses command line arguments using the `argparse` module.
+
+    Args:
+        None
+
+    Returns:
+        argparse.Namespace: The parsed command line arguments.
+
+    Raises:
+        None
+
+    Example:
+        ```
+        import argparse
+        from pathlib import Path
+
+        def parse_args() -> argparse.Namespace:
+            parser = argparse.ArgumentParser()
+            parser.add_argument(
+                "file",
+                type=Path,
+            )
+            parser.add_argument(
+                "--section",
+                "-s",
+                type=str,
+                default="tool.poetry.dependencies",
+            )
+            return parser.parse_args()
+
+        args = parse_args()
+        print(args.file)
+        print(args.section)
+        ```
+    """
+
     args = parse_args()
     deps = get_dependencies(args.file, args.section)
     lines = args.file.read_text().splitlines(keepends=False)
