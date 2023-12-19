@@ -41,10 +41,38 @@ class MenuEntry(BaseModel):
 
         :return: string to use in CLI.
         """
+        # sample commit
         if self.cli_name:
             return self.cli_name
         return self.code
 
+    @property
+    def generated_name(self, param1: str) -> str:
+        """
+        Property to generate parameter name.
+
+        It checks if cli_name is present,
+        otherwise, code is used.
+
+        :return: string to use in CLI.
+        """
+        if self.cli_name:
+            return self.cli_name
+        return self.code
+
+    @property
+    def generated_name(self, param1: str, param2: str) -> str:
+        """
+        Property to generate parameter name.
+
+        It checks if cli_name is present,
+        otherwise, code is used.
+
+        :return: string to use in CLI.
+        """
+        if self.cli_name:
+            return self.cli_name
+        return self.code
 
 SKIP_ENTRY = MenuEntry(
     code="skip",
