@@ -40,6 +40,19 @@ class MenuEntry(BaseModel):
         otherwise, code is used.
 
         :return: string to use in CLI.
+
+        :raises: (if applicable)
+        - No specific exceptions are raised in this method.
+
+        :Example:
+        ```
+        obj = ClassName()
+        obj.cli_name = "example"
+        print(obj.generated_name())  # Output: "example"
+        obj.cli_name = ""
+        obj.code = "sample"
+        print(obj.generated_name())  # Output: "sample"
+        ```
         """
         # sample commit
         if self.cli_name:
@@ -54,7 +67,19 @@ class MenuEntry(BaseModel):
         It checks if cli_name is present,
         otherwise, code is used.
 
-        :return: string to use in CLI.
+        :param param1: Input parameter of type string.
+        :type param1: str
+        :return: String to use in CLI.
+        :rtype: str
+        :raises: (if applicable, add information about exceptions)
+
+        Example:
+            Example usage:
+            ```
+            obj = ClassName()
+            result = obj.generated_name('example_param')
+            print(result)
+            ```
         """
         if self.cli_name:
             return self.cli_name
@@ -68,7 +93,14 @@ class MenuEntry(BaseModel):
         It checks if cli_name is present,
         otherwise, code is used.
 
+        :param param1: The first parameter.
+        :type param1: str
+        :param param2: The second parameter.
+        :type param2: str
         :return: string to use in CLI.
+        :rtype: str
+        :raises: (if applicable, add information about exceptions)
+        :example: (provide example)
         """
         if self.cli_name:
             return self.cli_name
