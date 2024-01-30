@@ -8,10 +8,17 @@ router = APIRouter()
 @router.get("/docs", include_in_schema=False)
 async def swagger_ui_html(request: Request) -> HTMLResponse:
     """
-    Swagger UI.
+    Render Swagger UI.
 
-    :param request: current request.
-    :return: rendered swagger UI.
+    Args:
+        request (Request): Current request.
+
+    Returns:
+        HTMLResponse: Rendered Swagger UI.
+
+    Raises:
+        None
+
     """
     title = request.app.title
     return get_swagger_ui_html(
@@ -28,7 +35,7 @@ async def swagger_ui_redirect() -> HTMLResponse:
     """
     Redirect to swagger.
 
-    :return: redirect.
+    :return: HTMLResponse: Redirect to swagger.
     """
     return get_swagger_ui_oauth2_redirect_html()
 
@@ -36,10 +43,13 @@ async def swagger_ui_redirect() -> HTMLResponse:
 @router.get("/redoc", include_in_schema=False)
 async def redoc_html(request: Request) -> HTMLResponse:
     """
-    Redoc UI.
+    Render the Redoc UI.
 
-    :param request: current request.
-    :return: rendered redoc UI.
+    :param request: The current request.
+    :type request: Request
+    :return: The rendered Redoc UI.
+    :rtype: HTMLResponse
+    :raises: None
     """
     title = request.app.title
     return get_redoc_html(

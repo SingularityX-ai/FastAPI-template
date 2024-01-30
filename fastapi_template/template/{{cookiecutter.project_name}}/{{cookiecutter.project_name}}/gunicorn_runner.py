@@ -45,6 +45,23 @@ class GunicornApplication(BaseApplication):
         workers: int,
         **kwargs: Any,
     ):
+        """
+        Initialize the GunicornRunner class.
+
+        Args:
+            app (str): The application to run.
+            host (str): The host to bind.
+            port (int): The port to bind.
+            workers (int): The number of worker processes.
+            **kwargs: Additional keyword arguments.
+
+        Raises:
+            Any: This method does not explicitly raise any exceptions.
+
+        Returns:
+            None
+        """
+
         self.options = {
             "bind": f"{host}:{port}",
             "workers": workers,
@@ -61,7 +78,11 @@ class GunicornApplication(BaseApplication):
         This function is used to set parameters to gunicorn
         main process. It only sets parameters that
         gunicorn can handle. If you pass unknown
-        parameter to it, it crash with error.
+        parameter to it, it crashes with an error.
+
+        Raises:
+            Any exceptions raised by the gunicorn configuration settings.
+
         """
         for key, value in self.options.items():
             if key in self.cfg.settings and value is not None:
@@ -69,12 +90,12 @@ class GunicornApplication(BaseApplication):
 
     def load(self) -> str:
         """
-        Load actual application.
+        Load the actual application.
 
-        Gunicorn loads application based on this
-        function's returns. We return python's path to
-        the app's factory.
+        Gunicorn loads the application based on the return value of this function,
+        which is the Python path to the app's factory.
 
-        :returns: python path to app factory.
+        :returns: Python path to the app factory.
+        :raises: Exception if there is an error while importing the app.
         """
         return import_app(self.app)

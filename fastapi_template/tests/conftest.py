@@ -15,7 +15,9 @@ def project_name(worker_id: str) -> str:
     """
     Generate name for test project.
 
-    :return: project name.
+    :param worker_id: str, worker ID used to generate project name.
+    :return: str, project name.
+    :raises: None
     """
     fake = Faker()
     raw_name = fake.name_female() + worker_id
@@ -30,7 +32,8 @@ def generator_start_dir() -> str:
     """
     Generate directory to work into
 
-    :yield: this fixture generates dir for all test projects.
+    :return: Yields the fixture that generates a directory for all test projects.
+    :raises: OSError if unable to change directory or remove the temporary directory.
     """
     old_cwd = os.getcwd()
     newpath = tempfile.mkdtemp()
@@ -48,7 +51,8 @@ def default_context(project_name: str) -> None:
     Default builder context without features.
 
     :param project_name: current project name.
-    :return: context.
+    :return: BuilderContext: context with default values.
+    :raises: None
     """
     return BuilderContext(
         project_name=project_name,
@@ -79,6 +83,7 @@ def default_dir(generator_start_dir: str) -> None:
     Change directory to generator_start_dir.
 
     :param generator_start_dir: start_dir.
+    :raises: None
     """
     yield
     cwd = os.getcwd()
@@ -91,8 +96,9 @@ def docker_module_shutdown(generator_start_dir: str, project_name: str) -> None:
     """
     Cleans up docker context.
 
-    :param generator_start_dir: generator dir.
-    :param project_name: name of the project.
+    :param generator_start_dir: str, generator dir.
+    :param project_name: str, name of the project.
+    :raises: None
     """
     yield
     cwd = os.getcwd()

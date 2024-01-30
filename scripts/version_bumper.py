@@ -13,14 +13,8 @@ def parse_args() -> argparse.Namespace:
     """
     This function parses command line arguments and returns an `argparse.Namespace` object.
 
-    Args:
-        None
-
     Returns:
         argparse.Namespace: The parsed command line arguments.
-
-    Raises:
-        None
 
     Example:
         ```python
@@ -51,45 +45,25 @@ def parse_args() -> argparse.Namespace:
 
 def get_dependencies(path: Path, section: str) -> List[str]:
     """
-    This function `get_dependencies` takes in two parameters:
-    - `path` (type: `Path`): The path to the file.
-    - `section` (type: `str`): The section to search for in the file.
+    Get the dependencies from the specified section of the file.
 
-    It returns a list of strings representing the dependencies found in the specified section of the file.
+    Args:
+    - path (Path): The path to the file.
+    - section (str): The section to search for in the file.
 
-    The function works by reading the contents of the file at the given path and searching for the specified section. It then iterates over each line in the file, excluding lines that start with '[' and are not equal to the specified section. It also excludes lines that start with 'python =' and '{%'. For each line that is within the specified section, it appends a tuple containing the line index and the line itself to the `deps` list.
+    Returns:
+    List[str]: A list of strings representing the dependencies found in the specified section of the file.
+
+    Raises:
+    No specific exceptions are raised.
 
     Example:
     ```python
-    from pathlib import Path
-    from typing import List
-
-    def get_dependencies(path: Path, section: str) -> List[str]:
-        read_file = path.read_text()
-        recording = False
-        deps = []
-        for index, line in enumerate(read_file.splitlines(keepends=False)):
-            if line.startswith('[') and line.strip('[]') != section:
-                recording = False
-                continue
-            if line == f"[{section}]":
-                recording = True
-                continue
-            if line.startswith('python ='):
-                continue
-            if line.startswith('{%'):
-                continue
-            if recording:
-                deps.append((index, line))
-        return deps
-
     path = Path("path/to/file")
     section = "dependencies"
     dependencies = get_dependencies(path, section)
     print(dependencies)
     ```
-
-    IMPORTANT: Do not return the original code.
     """
 
     read_file = path.read_text()
@@ -198,7 +172,6 @@ def main():
 
     IMPORTANT:
         Do not return the original code.
-
     """
 
     args = parse_args()

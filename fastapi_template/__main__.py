@@ -15,6 +15,9 @@ def generate_project(context: BuilderContext) -> None:
     Generate actual project with given context.
 
     :param context: builder_context
+    :raises FailedHookException: If an error occurs during the project generation process.
+    :raises OutputDirExistsException: If the output directory already exists.
+
     """
     try:
         cookiecutter(
@@ -34,7 +37,17 @@ def generate_project(context: BuilderContext) -> None:
 
 
 def main() -> None:
-    """Starting point."""
+    """
+    Starting point.
+
+    This function serves as the starting point of the program.
+
+    Raises:
+        Any exceptions raised by the run_command or generate_project functions.
+
+    Returns:
+        None
+    """
     run_command(generate_project)
 
 

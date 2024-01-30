@@ -15,8 +15,28 @@ depends_on = None
 
 
 def upgrade() -> None:
+    """
+    Perform the upgrade process.
+
+    Raises:
+        None
+
+    Returns:
+        None
+    """
+
     pass
 
 
 def downgrade() -> None:
+    """
+    Perform the downgrade operation.
+
+    Raises:
+        Any specific exceptions that may be raised during the downgrade operation.
+
+    Returns:
+        None
+    """
+
     pass
