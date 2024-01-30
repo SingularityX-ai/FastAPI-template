@@ -4,7 +4,13 @@ from pathlib import Path
 
 
 def load_all_models() -> None:
-    """Load all models from this folder."""
+    """
+    Load all models from the current folder.
+
+    Raises:
+        SomeException: An explanation of when this exception is raised.
+
+    """
     package_dir = Path(__file__).resolve().parent
     modules = pkgutil.walk_packages(
         path=[str(package_dir)],

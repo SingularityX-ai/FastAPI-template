@@ -8,6 +8,19 @@ DESCRIPTION = "Creates dummy model"
 
 
 async def forwards() -> MigrationManager:
+    """
+    Generate a MigrationManager instance for performing forward migration.
+
+    Returns:
+        MigrationManager: A MigrationManager instance configured for forward migration.
+
+    Raises:
+        None
+
+    Example:
+        manager = forwards()
+    """
+
     manager = MigrationManager(
         migration_id=ID, app_name="ptest_db", description=DESCRIPTION
     )

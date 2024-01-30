@@ -11,6 +11,8 @@ class Query:
         Sends echo message back to user.
 
         :param message: incoming message.
-        :returns: same message as the incoming.
+        :type message: str
+        :return: same message as the incoming.
+        :rtype: str
         """
         return message
